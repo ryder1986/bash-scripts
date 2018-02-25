@@ -1,0 +1,56 @@
+#!/bin/bash
+source /root/repo-github/bash-scripts/functions/functions.sh
+ARG_NO=$#
+ARGS=$@
+#echo  arg no:$ARG_NO  args: $ARGS
+ARGS_CMD=`echo $ARGS|sed "s/^**/ppp/g"`
+#echo rst  $ARGS_CMD
+#$ARGS
+#function fun_help()
+#{
+#	echo "----------------------"
+#	echo "usage :"
+#	echo "call + cmd + arg"
+#	echo "----------------------"
+#	echo "info:"
+#	type -a $1 
+#	echo "----------------------"
+#	echo "content:"
+#	cat /root/repo-github/bin/$1
+#	echo "----------------------"
+#}
+#readme 9
+function help()
+{
+ 	echo "help:call cmd -h"
+#   $1 -h
+}
+function fun_help()
+{
+# 	echo "help:call cmd -h"
+    $1 -h
+}
+function fun_exec()
+{
+ echo  $@
+ CMD=`echo $@ | sed s/^$1/\ /g   `
+$CMD
+}
+function fun_exec_withoutarg()
+{
+ 	$1 
+}
+echo $#
+if [ $# = 1  ] && [ $1 = "-h" ]
+then 	
+ 	help 
+ 
+
+
+elif [ $# = 2  ] && [ $2 = "-h" ]
+then 	
+ 	fun_help $1
+else
+	fun_exec $1 $@
+fi
+
