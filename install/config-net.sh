@@ -1,2 +1,2 @@
 #!/bin/bash
-systemctl disable NetwrokManager
+systemctl disable NetworkManager
